@@ -23,15 +23,13 @@ function scrapeGrant(url, parent, cb) {
 async function scrape() {
   let grants = await Promise.all(
     [
-      scrapeGrant('http://www.artshow.com/juriedshows/west.html', '.listing', (grant) => {
-        return {
-          deadline: '',
-          description: '',
-          location: '',
-          title: grant.find('h4').text(),
-          url: grant.find('a').eq(1).attr('href'),
-        }
-      }),
+      scrapeGrant('http://www.artshow.com/juriedshows/west.html', '.listing', (grant) => ({
+        deadline: '',
+        description: '',
+        location: '',
+        title: grant.find('h4').text(),
+        url: grant.find('a').eq(1).attr('href'),
+      })),
       // http://www.sfartistnetwork.org/calls-for-artists.html
       // http://www.cac.ca.gov/opportunities/publicart.php
       // http://www.cac.ca.gov/opportunities/artist.php
